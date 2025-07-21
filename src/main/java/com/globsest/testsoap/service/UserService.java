@@ -1,21 +1,21 @@
 package com.globsest.testsoap.service;
 
 import com.globsest.testsoap.entity.User;
-import com.globsest.testsoap.entity.UserRole;
+import com.globsest.testsoap.entity.Roles;
 import com.globsest.testsoap.repository.UserRepository;
-import com.globsest.testsoap.repository.UserRoleRepository;
+import com.globsest.testsoap.repository.RolesRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 
 @Service
 public class UserService {
-    private UserRoleRepository userRoleRepository;
+    private RolesRepository rolesRepository;
     private UserRepository userRepository;
 
-    public UserService(UserRepository userRepository, UserRoleRepository userRoleRepository) {
+    public UserService(UserRepository userRepository, RolesRepository rolesRepository) {
         this.userRepository = userRepository;
-        this.userRoleRepository = userRoleRepository;
+        this.rolesRepository = rolesRepository;
     }
 
     public List<User> findAllUsers() {
@@ -32,14 +32,14 @@ public class UserService {
     }
 
     public boolean deleteUserById(Long id) {
-        if (userRoleRepository.existsById(id)) {
-            userRoleRepository.deleteById(id);
+        if (userRepository.existsById(id)) {
+            userRepository.deleteById(id);
             return true;
         } else {return false;}
     }
 
     public User createUser(String name, String login, String password, List<String> roleNames) {
-        Set<UserRole> roles = resolveRoles(roleNames);
+        Set<Roles> roles = resolveRoles(roleNames);
         User user = new User(name, login, password, roles);
         return userRepository.save(user);
     }
@@ -54,17 +54,17 @@ public class UserService {
         user.setPassword(password);
 
         if (roleNames != null) {
-            Set<UserRole> roles = resolveRoles(roleNames);
+            Set<Roles> roles = resolveRoles(roleNames);
             user.setRoles(roles);
         }
 
         return Optional.of(userRepository.save(user));
     }
 
-    private Set<UserRole> resolveRoles(List<String> roleNames) {
-        Set<UserRole> roles = new HashSet<>();
+    private Set<Roles> resolveRoles(List<String> roleNames) {
+        Set<Roles> roles = new HashSet<>();
         for (String roleName : roleNames) {
-            userRoleRepository.findByName(roleName)
+            rolesRepository.findByName(roleName)
                     .ifPresent(roles::add);
         }
         return roles;

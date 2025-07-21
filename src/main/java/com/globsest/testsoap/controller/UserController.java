@@ -55,7 +55,7 @@ public class UserController {
             userFull.setLogin(user.getLogin());
             userFull.setPassword(user.getPassword());
             userFull.getRoles().addAll(
-                    user.getRoles().stream().map(r -> r.getName()).collect(Collectors.toList())
+                    user.getRoles().stream().map(r -> r.getName()).toList()
             );
             response.setUser(userFull);
         });

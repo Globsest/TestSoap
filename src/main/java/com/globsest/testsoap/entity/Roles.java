@@ -3,12 +3,9 @@ package com.globsest.testsoap.entity;
 
 import jakarta.persistence.*;
 
-import java.util.HashSet;
-import java.util.Set;
-
 @Entity
 @Table(name = "roles")
-public class UserRole {
+public class Roles {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,13 +14,11 @@ public class UserRole {
     @Column(unique = true, nullable = false)
     private String name;
 
-    @ManyToMany(mappedBy = "roles")
-    private Set<User> users = new HashSet<>();
 
-    public UserRole() {
+    public Roles() {
     }
 
-    public UserRole(String name) {
+    public Roles(String name) {
         this.name = name;
     }
 
@@ -43,11 +38,4 @@ public class UserRole {
         this.name = name;
     }
 
-    public Set<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(Set<User> users) {
-        this.users = users;
-    }
 }

@@ -28,14 +28,14 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
-    private Set<UserRole> roles = new HashSet<>();
+    private Set<Roles> roles = new HashSet<>();
 
 
     public User() {
 
     }
 
-    public User(String name, String login, String password, Set<UserRole> roles) {
+    public User(String name, String login, String password, Set<Roles> roles) {
         this.name = name;
         this.login = login;
         this.password = password;
@@ -74,11 +74,11 @@ public class User {
         this.password = password;
     }
 
-    public Set<UserRole> getRoles() {
+    public Set<Roles> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<UserRole> roles) {
+    public void setRoles(Set<Roles> roles) {
         this.roles = roles;
     }
 }

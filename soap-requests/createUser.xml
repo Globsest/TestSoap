@@ -1,0 +1,12 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sch="http://globsest.com/testsoap">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <sch:CreateUserRequest>
+            <sch:name>Иван Иванов</sch:name>
+            <sch:login>ivan</sch:login>
+            <sch:password>Passw0rd</sch:password>
+            <sch:roles>ADMIN</sch:roles>
+            <sch:roles>USER</sch:roles>
+        </sch:CreateUserRequest>
+    </soapenv:Body>
+</soapenv:Envelope>

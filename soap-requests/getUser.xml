@@ -1,0 +1,9 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sch="http://globsest.com/testsoap">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <sch:GetUserRequest>
+            <sch:id>1</sch:id>
+        </sch:GetUserRequest>
+    </soapenv:Body>
+</soapenv:Envelope>
+
